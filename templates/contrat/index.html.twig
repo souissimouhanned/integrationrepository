@@ -1,0 +1,73 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Contrat index{% endblock %}
+
+{% block body %}
+    <h1>Contrat index</h1>
+    <input class="form-control" id="myInput" type="text" placeholder="Recherche Contrat" aria-label="search" aria-describedby="search">
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Num_contrat</th>
+                <th>Nom_user</th>
+                <th>Prenom_user</th>
+                <th>Num_tel</th>
+                <th>Code_postal</th>
+                <th>Ville</th>
+                <th>Destinataire</th>
+                <th>Type_contrat</th>
+                <th>Date</th>
+                <th>Nature_contart</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="hi">
+        {% for contrat in contrats %}
+            <tr>
+                <td>{{ contrat.id }}</td>
+                <td>{{ contrat.numContrat }}</td>
+                <td>{{ contrat.nomUser }}</td>
+                <td>{{ contrat.prenomUser }}</td>
+                <td>{{ contrat.numTel }}</td>
+                <td>{{ contrat.codePostal }}</td>
+                <td>{{ contrat.ville }}</td>
+                <td>{{ contrat.destinataire }}</td>
+                <td>{{ contrat.typeContrat }}</td>
+                <td>{{ contrat.date ? contrat.date|date('Y-m-d') : '' }}</td>
+                <td>{{ contrat.natureContart }}</td>
+
+
+                <td>
+                    <a class="btn btn-outline-warning" href="{{ path('contrat_show', {'id': contrat.id}) }}">show</a>
+                    <a class="btn btn-outline-primary" href="{{ path('contrat_edit', {'id': contrat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#hi tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)
+
+                });
+            });
+        });
+    </script>
+    {{ knp_pagination_render(contrats) }}
+
+
+    <a class="btn btn-warning" href="{{ path('contrat_new') }}">Create new</a><br>
+    <a class="btn btn-primary"href="{{ path('demande_contart_admin') }}">Show pending demand contract</a>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Assureur index{% endblock %}
+
+{% block body %}
+    <h1>Assureur index</h1>
+
+    <table border="1" class="table table-hover table-dark">
+        <thead class="table table-hover table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Age</th>
+                <th>Cin_assureur</th>
+                <th>Mail</th>
+                <th>Num_tel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for assureur in assureurs %}
+            <tr>
+                <td>{{ assureur.id }}</td>
+                <td>{{ assureur.age }}</td>
+                <td>{{ assureur.cinAssureur }}</td>
+                <td>{{ assureur.mail }}</td>
+                <td>{{ assureur.numTel }}</td>
+                <td>
+                    <a class="btn btn-outline-warning" href="{{ path('assureur_show', {'id': assureur.id}) }}">show</a>
+                    <a class="btn btn-outline-primary"href="{{ path('assureur_edit', {'id': assureur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-warning"href="{{ path('assureur_new') }}">Create new</a>
+{% endblock %}

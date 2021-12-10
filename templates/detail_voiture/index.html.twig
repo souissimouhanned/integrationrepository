@@ -1,0 +1,48 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}DetailVoiture index{% endblock %}
+
+{% block body %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <h1>DetailVoiture index</h1>
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Modele</th>
+                <th>NombrePlace</th>
+                <th>Valeur</th>
+                <th>Puissance</th>
+                <th>Age</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detail_voiture in detail_voitures %}
+            <tr>
+                <td>{{ detail_voiture.id }}</td>
+                <td>{{ detail_voiture.Modele }}</td>
+                <td>{{ detail_voiture.NombrePlace }}</td>
+                <td>{{ detail_voiture.Valeur }}</td>
+                <td>{{ detail_voiture.puissance }}</td>
+                <td>{{ detail_voiture.age }}</td>
+                <td>
+                    <a href="{{ path('detail_voiture_show', {'id': detail_voiture.id}) }}">show</a>
+                    <a href="{{ path('detail_voiture_edit', {'id': detail_voiture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('detail_voiture_new') }}" class="btn btn-primary">Create new</a>
+    <a href="{{ path('voiture_index') }}" class="btn btn-success">Go to voiture</a>
+    
+{% endblock %}

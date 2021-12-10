@@ -1,0 +1,13 @@
+{% extends  'base.html.twig'  %}
+
+{%  titre du bloc %}Modifier le calendrier{% endblock %}
+
+{% corps du bloc  %}
+    <h1>Modifier le calendrier</h1>
+
+    {{ include('calendar/_form.html.twig', {'button_label':  'Mise à jour' }) }}
+
+    <a href="{{ chemin('calendar_index') }}">retour à la liste</a>
+
+    {{ inclure('calendrier/_delete_form.html.twig' ) }}
+{% endblock %}

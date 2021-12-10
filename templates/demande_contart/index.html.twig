@@ -1,0 +1,46 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}DemandeContart index{% endblock %}
+
+{% block body %}
+    <h1>DemandeContart index</h1>
+
+    <table class="table table-hover table-dark" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_user</th>
+                <th>Prenom_user</th>
+                <th>Num_tel</th>
+                <th>Ville</th>
+                <th>Code_postal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demande_contart in demande_contarts %}
+            <tr>
+                <td>{{ demande_contart.id }}</td>
+                <td>{{ demande_contart.nomUser }}</td>
+                <td>{{ demande_contart.prenomUser }}</td>
+                <td>{{ demande_contart.numTel }}</td>
+                <td>{{ demande_contart.ville }}</td>
+                <td>{{ demande_contart.codePostal }}</td>
+                <td>
+                    <a class="btn btn-outline-warning" href="{{ path('demande_contart_show', {'id': demande_contart.id}) }}">show</a>
+                    <a class="btn btn-outline-primary" href="{{ path('demande_contart_edit', {'id': demande_contart.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(demande_contarts) }}
+
+
+    <a class="btn btn-warning"href="{{ path('demande_contart_new') }}">Create new</a>
+{% endblock %}

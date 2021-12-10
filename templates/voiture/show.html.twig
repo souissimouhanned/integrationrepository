@@ -1,0 +1,38 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+    <h1>Voiture</h1>
+
+    <table class="table table-dark">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ voiture.id }}</td>
+            </tr>
+            <tr>
+                <th>CinUtilisateur</th>
+                <td>{{ voiture.CinUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ voiture.Matricule }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ voiture.Marque }}</td>
+            </tr>
+            <tr>
+                <th>CarteGrise</th>
+                <td>{{ voiture.CarteGrise }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('voiture_index')}}"class="btn btn-danger">back to list</a>
+
+    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}" class="btn btn-info">edit</a>
+
+    {{ include('voiture/_delete_form.html.twig') }}
+{% endblock %}

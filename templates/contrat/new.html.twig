@@ -1,0 +1,21 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}New Contrat{% endblock %}
+
+{% block body %}
+    <h1>Create new Contrat</h1>
+    <div class="msg">
+    {% set flashbag_notices = app.session.flashbag.get('notice') %}
+    {% if flashbag_notices is not empty %}
+        <ul class ="msg">
+            {% for notice in flashbag_notices %}
+                <li>{{ notice }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+
+    {{ include('contrat/_form.html.twig') }}
+
+    <a href="{{ path('contrat_index') }}">back to list</a>
+{% endblock %}

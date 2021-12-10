@@ -1,0 +1,91 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Voiture index{% endblock %}
+
+{% block body %}
+    <h1>Voiture index</h1>
+    <div class="paginator">    
+    {{knp_pagination_render(voiture) }}
+    </div>
+<input type="text" id="search" class="form-control" placeholder="Search">
+    <table border ="1" id="t" class="table table-hover table-dark">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>CinUtilisateur</th>
+                <th>Matricule</th>
+                <th>Marque</th>
+                <th>CarteGrise</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="all">
+        {% for voiture in voiture %}
+            <tr>
+                <td>{{ voiture.id }}</td>
+                <td>{{ voiture.CinUtilisateur }}</td>
+                <td>{{ voiture.Matricule }}</td>
+                <td>{{ voiture.Marque }}</td>
+                <td>{{ voiture.CarteGrise }}</td>
+                <td>
+                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}" class="btn btn-outline-secondary">show</a>
+                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}" class="btn btn-outline-warning">edit</a>
+                    
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tbody id="search1">
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(voiture) }}
+    
+    <a class="btn btn-primary" href="{{ path('voiture_new') }}">Create new</a>
+    <a href="{{ path('detail_voiture_index')}}" class="btn btn-dark">show Detail</a>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+<script>
+$( document ).ready(function() {
+        $("#search").keyup(function(e){
+
+          var value = $(this).val();
+             $.ajax({
+                url : "{{ path('voiture_index') }}",
+                type : 'GET', 
+                data: {
+                        'searchValue' : value
+                    },
+                success : function(retour){
+                    console.log("hna a7na")
+                  if(retour){
+                      console.log("d5alna fil if")
+  			$('#t tbody#search1').empty();
+  			$.each(JSON.parse(retour), function(i, obj) {
+  			$('#t tbody#all').hide();
+  			$('#t tbody#search1').append('<tr><td> '+obj.id+'  </td><td>    '+obj.CinUtilisateur+'  </td><td>'+obj.Matricule+' </td> <td>'+obj.Marque+' </td> <td>'+obj.CarteGrise+' </td><td><a href="updateStudent/'+obj.id+'">modifier</a> </br><a href="deleteStudent/'+obj.id+'">supprimer</a></td></tr>');
+});
+                  }
+                  else
+                  console.log("fil else")
+                  {
+   $('#t tbody#all').show();
+   $('#t tbody#search').empty();
+   $('#t tbody#search').fadeIn('fast');
+                     }
+ },
+        });
+        return false;
+        });
+    });
+        </script>
+
+{% endblock %}
+

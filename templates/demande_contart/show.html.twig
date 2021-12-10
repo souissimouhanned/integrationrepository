@@ -1,0 +1,42 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}DemandeContart{% endblock %}
+
+{% block body %}
+    <h1>DemandeContart</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ demande_contart.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_user</th>
+                <td>{{ demande_contart.nomUser }}</td>
+            </tr>
+            <tr>
+                <th>Prenom_user</th>
+                <td>{{ demande_contart.prenomUser }}</td>
+            </tr>
+            <tr>
+                <th>Num_tel</th>
+                <td>{{ demande_contart.numTel }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ demande_contart.ville }}</td>
+            </tr>
+            <tr>
+                <th>Code_postal</th>
+                <td>{{ demande_contart.codePostal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('demande_contart_index') }}">back to list</a>
+
+    <a href="{{ path('demande_contart_edit', {'id': demande_contart.id}) }}">edit</a>
+
+    {{ include('demande_contart/_delete_form.html.twig') }}
+{% endblock %}

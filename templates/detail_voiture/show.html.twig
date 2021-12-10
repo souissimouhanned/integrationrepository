@@ -1,0 +1,42 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}DetailVoiture{% endblock %}
+
+{% block body %}
+    <h1>DetailVoiture</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ detail_voiture.id }}</td>
+            </tr>
+            <tr>
+                <th>Modele</th>
+                <td>{{ detail_voiture.Modele }}</td>
+            </tr>
+            <tr>
+                <th>NombrePlace</th>
+                <td>{{ detail_voiture.NombrePlace }}</td>
+            </tr>
+            <tr>
+                <th>Valeur</th>
+                <td>{{ detail_voiture.Valeur }}</td>
+            </tr>
+            <tr>
+                <th>Puissance</th>
+                <td>{{ detail_voiture.puissance }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ detail_voiture.age }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('detail_voiture_index') }}">back to list</a>
+
+    <a href="{{ path('detail_voiture_edit', {'id': detail_voiture.id}) }}">edit</a>
+
+    {{ include('detail_voiture/_delete_form.html.twig') }}
+{% endblock %}

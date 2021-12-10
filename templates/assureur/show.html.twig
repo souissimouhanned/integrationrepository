@@ -1,0 +1,38 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Assureur{% endblock %}
+
+{% block body %}
+    <h1>Assureur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ assureur.id }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ assureur.age }}</td>
+            </tr>
+            <tr>
+                <th>Cin_assureur</th>
+                <td>{{ assureur.cinAssureur }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ assureur.mail }}</td>
+            </tr>
+            <tr>
+                <th>Num_tel</th>
+                <td>{{ assureur.numTel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('assureur_index') }}">back to list</a>
+
+    <a href="{{ path('assureur_edit', {'id': assureur.id}) }}">edit</a>
+
+    {{ include('assureur/_delete_form.html.twig') }}
+{% endblock %}

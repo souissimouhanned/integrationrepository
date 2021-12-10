@@ -1,0 +1,43 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Pending Contrat {% endblock %}
+
+{% block body %}
+    <h1>Pending Contrat</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom_user</th>
+            <th>Prenom_user</th>
+            <th>Num_tel</th>
+            <th>Ville</th>
+            <th>Code_postal</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contrat in demande_contarts %}
+            <tr>
+                <td>{{ contrat.id }}</td>
+                <td>{{ contrat.nomUser }}</td>
+                <td>{{ contrat.prenomUser }}</td>
+                <td>{{ contrat.numTel }}</td>
+                <td>{{ contrat.ville }}</td>
+                <td>{{ contrat.codePostal }}</td>
+
+                <td>
+                    <a href="{{ path('approvependingcontrat', {'id': contrat.id}) }}">Edit pending contrat</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('demande_contart_admin') }}">Show pending demand contract</a>
+
+{% endblock %}
